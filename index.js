@@ -1,7 +1,7 @@
 // Copyright (c) 2014 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-// extract from chromium source code by @nalinc
+// extract from chromium source code by @liuwayong
 (function () {
     'use strict';
     /**
@@ -467,7 +467,12 @@
                     'from { width:' + Trex.config.WIDTH + 'px }' +
                     'to { width: ' + this.dimensions.WIDTH + 'px }' +
                     '}';
-                document.styleSheets[0].insertRule(keyframes, 0);
+                
+                // create a style sheet to put the keyframe rule in 
+                // and then place the style sheet in the html head    
+                var sheet = document.createElement('style');
+                sheet.innerHTML = keyframes;
+                document.head.appendChild(sheet);
 
                 this.containerEl.addEventListener(Runner.events.ANIM_END,
                     this.startGame.bind(this));
@@ -1594,7 +1599,7 @@
             msPerFrame: 1000 / 60
         },
         DUCKING: {
-            frames: [262, 321],
+            frames: [264, 323],
             msPerFrame: 1000 / 8
         }
     };
